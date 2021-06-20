@@ -11,6 +11,7 @@ const EventDetailPage = () => {
   const { eventId } = router.query;
   const event = getEventById(eventId);
 
+  // The Page source will have the loading code and not the data. 
   if (!event) {
     return (
       <ErrorAlert>
