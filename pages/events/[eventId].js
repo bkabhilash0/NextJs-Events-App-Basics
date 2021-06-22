@@ -5,7 +5,11 @@ import EventContent from "../../components/event-detail/event-content";
 import ErrorAlert from "../../components/UI/ErrorAlert";
 import { getEventById, getFeaturedEvents } from "../../helpers/api-util";
 
+<<<<<<< HEAD
 const EventDetailPage = ({ event }) => {
+=======
+  // The Page source will have the loading code and not the data. 
+>>>>>>> c9902373c5bd76ed108dd39628c4a9c7fe1c3b69
   if (!event) {
     return (
       <div className="center">
