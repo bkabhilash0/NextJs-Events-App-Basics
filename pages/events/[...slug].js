@@ -4,20 +4,20 @@ import ResultsTitle from "../../components/events/ResultsTitle";
 import Button from "../../components/UI/Button";
 import ErrorAlert from "../../components/UI/ErrorAlert";
 import { useRouter } from "next/router";
-import { getFilteredEvents } from "../../dummy-data";
+import { getFilteredEvents } from "../../helpers/api-util";
 
-const FilteredEventsPage = () => {
-  const router = useRouter();
-  const filterData = router.query.slug;
+const FilteredEventsPage = (props) => {
+  // const router = useRouter();
+  // const filterData = router.query.slug;
 
-  if (!filterData) {
-    return <p className="center">Loading...</p>;
-  }
+  // if (!filterData) {
+  //   return <p className="center">Loading...</p>;
+  // }
 
-  const year = +filterData[0];
-  const month = +filterData[1];
+  // const year = +filterData[0];
+  // const month = +filterData[1];
 
-  if (isNaN(year) || isNaN(month) || month < 1 || month > 12) {
+  if (props.hasError) {
     return (
       <>
         <ErrorAlert>
@@ -30,7 +30,7 @@ const FilteredEventsPage = () => {
     );
   }
 
-  const events = getFilteredEvents({ year, month });
+  const { events, year, month } = props;
 
   if (!events || events.length === 0) {
     return (
@@ -53,6 +53,32 @@ const FilteredEventsPage = () => {
       <EventList items={events} />
     </>
   );
+};
+
+export const getServerSideProps = async (context) => {
+  const { params } = context;
+  const filterData = params.slug;
+
+  const year = +filterData[0];
+  const month = +filterData[1];
+
+  if (isNaN(year) || isNaN(month) || month < 1 || month > 12) {
+    return {
+      props: {
+        hasError: true,
+      },
+    };
+  }
+
+  const events = await getFilteredEvents({ year, month });
+
+  return {
+    props: {
+      events,
+      year,
+      month,
+    },
+  };
 };
 
 export default FilteredEventsPage;
