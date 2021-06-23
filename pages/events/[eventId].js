@@ -1,15 +1,13 @@
 import React from "react";
+import Head from "next/head";
 import EventSummary from "../../components/event-detail/event-summary";
 import EventLogistics from "../../components/event-detail/event-logistics";
 import EventContent from "../../components/event-detail/event-content";
+import Comments from "../../components/input/comments";
 import ErrorAlert from "../../components/UI/ErrorAlert";
 import { getEventById, getFeaturedEvents } from "../../helpers/api-util";
 
-<<<<<<< HEAD
 const EventDetailPage = ({ event }) => {
-=======
-  // The Page source will have the loading code and not the data. 
->>>>>>> c9902373c5bd76ed108dd39628c4a9c7fe1c3b69
   if (!event) {
     return (
       <div className="center">
@@ -20,6 +18,10 @@ const EventDetailPage = ({ event }) => {
 
   return (
     <>
+      <Head>
+        <meta name="description" content={event.description} />
+        <title>{event.title}</title>
+      </Head>
       <EventSummary title={event.title} />
       <EventLogistics
         date={event.date}
@@ -30,6 +32,7 @@ const EventDetailPage = ({ event }) => {
       <EventContent>
         <p>{event.description}</p>
       </EventContent>
+      <Comments eventId={event.id}/>
     </>
   );
 };

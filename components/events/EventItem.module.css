@@ -9,17 +9,17 @@
   gap: 1rem;
 }
 
-/* .item img{
+.item img{
   width: 100%;
   object-fit: cover;
   height: 10rem;
-} */
+}
 
-.wrapper{
+/* .wrapper{
   width: 100%;
   position: relative;
   height: 10rem;
-}
+} */
 
 .content {
   width: 100%;
@@ -87,15 +87,16 @@
     flex-direction: row;
   }
 
-  /* .item img {
+  .item img {
+    width: 40%;
+    height: 14rem;
+    object-fit: cover;
+  }
+
+  /* .wrapper{
     width: 40%;
     height: 14rem;
   } */
-
-  .wrapper{
-    width: 40%;
-    height: 14rem;
-  }
 
   .content {
     width: 60%;

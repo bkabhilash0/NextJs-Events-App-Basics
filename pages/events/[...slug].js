@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import EventList from "../../components/events/EventList";
 import ResultsTitle from "../../components/events/ResultsTitle";
 import Button from "../../components/UI/Button";
@@ -49,6 +50,10 @@ const FilteredEventsPage = (props) => {
 
   return (
     <>
+      <Head>
+        <meta name="description" content={`All Events for ${month}/${year}`} />
+        <title>Filtered Events</title>
+      </Head>
       <ResultsTitle date={date} />
       <EventList items={events} />
     </>

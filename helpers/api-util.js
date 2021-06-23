@@ -10,7 +10,10 @@ export const getAllEvents = async () => {
 
 export async function getFeaturedEvents() {
   const allEvents = await getAllEvents();
-  return allEvents.filter((event) => event.isFeatured);
+  if (typeof allEvents !== "string") {
+    return allEvents.filter((event) => event.isFeatured);
+  }
+  return allEvents;
 }
 
 export const getFilteredEvents = async (dateFilter) => {
